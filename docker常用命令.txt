@@ -1,0 +1,46 @@
+
+
+参考：https://blog.csdn.net/m0_74007708/article/details/136887376
+
+# 万能安装，末尾为镜像名称
+bash -c "$(curl -sSLf https://xy.ggbond.org/xy/docker_pull.sh)" -s xuyangbo/open-webui
+
+
+# 更换docker镜像源
+cd /etc/docker
+vi daemon.json
+
+{
+  "registry-mirrors" : [
+      "https://dockerproxy.com",
+      "https://hub-mirror.c.163.com",
+      "https://mirror.baidubce.com",
+      "https://ccr.ccs.tencentyun.com"
+   ]
+}
+
+# 重启
+systemctl daemon-reload
+systemctl restart docker.service
+
+
+# 查看全部容器、镜像
+docker ps -a
+docker images
+
+# 查找镜像
+docker search xiaoya
+
+# 拉取镜像
+docker pull xiaoyaliu/alist
+docker pull wghaos/xiaoya-alist
+
+# 下载并运行hello-world镜像
+docker run hello-world
+
+
+# 运行镜像
+docker run alist
+
+# 删除镜像
+docker rmi -f 镜像名/镜像ID
