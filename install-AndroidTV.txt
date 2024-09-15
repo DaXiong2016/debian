@@ -1,0 +1,16 @@
+
+查看--os-variant参数
+osinfo-query os
+
+# 4g内存 16g硬盘
+virt-install \
+--virt-type=kvm \
+--name android \
+--ram 4096 \
+--vcpus=1 \
+--disk path=/var/lib/libvirt/images/android.qcow2,size=16 \
+--os-variant voidlinux \
+--osinfo detect=on,name=voidlinux \
+--cdrom /data/os/ATV9X86X64Chrome06.02.23.iso \
+--network network=default,model=virtio --graphics vnc,listen=0.0.0.0 \
+--noautoconsole
