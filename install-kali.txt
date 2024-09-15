@@ -1,0 +1,13 @@
+# 4g内存 30g硬盘
+virt-install \
+--virt-type=kvm \
+--name kali-linux \
+--ram 4096 \
+--vcpus=1 \
+--disk path=/var/lib/libvirt/images/kali.qcow2,size=30 \
+--os-variant voidlinux \
+--osinfo detect=on,name=voidlinux \
+--cdrom /data/os/kali-linux-2024.3-installer-amd64.iso \
+--network network=default,model=virtio \
+--graphics vnc,listen=0.0.0.0 \
+--noautoconsole
