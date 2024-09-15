@@ -243,7 +243,7 @@ apt install amule
 # 通过dd生成一个文件
 dd if=/dev/zero of=filespace count=5 bs=8192M
 # 文件转换为 swap 格式
-mkswap filespace
+mkswap 
 # 修改文件权限为600
 chmod 600 filespace
 # 挂在交换空间
@@ -251,6 +251,8 @@ swapon filespace
 # 添加开机自启
 nano /etc/fstab
 
+# 手工开启
+swapon /root/filespace
 *** ------ swap end ------ ***
 
 
@@ -295,20 +297,31 @@ iface br0 inet dhcp
 bridge_ports wlp2s0
 ```
 
-经实践，以上方法在无线网卡行不通
+经实践，以上方法是错误的
+只需要打开Network Connections应用，点击左下方加号，创建一个桥接，命名为br0即可
 
 ----
 
-
-
-virsh --connect qemu:///system start win10vm
-
 @size 60G
-sudo virt-install --name win10vm --ram 4096 --vcpus=2 --disk path=/var/lib/libvirt/images/win10vm.qcow2,size=60 --os-type windows --os-variant win10 --cdrom /data/os/WIN10_64.esd --network bridge=br0 --graphics vnc,listen=0.0.0.0 --noautoconsole
+sudo virt-install --name win10vm --ram 4096 --vcpus=2 --disk path=/var/lib/libvirt/images/win10vm.qcow2,size=60 --os-type windows --os-variant win10 --cdrom /data/os/FirPE-V1.9.1.iso --network bridge=br0 --graphics vnc,listen=0.0.0.0 --noautoconsole
+
+@成功会显示，然后使用Virtual Machine Manager打开即可。
+Starting install...
+Allocating 'win10vm.qcow2'                                  | 8.1 MB  00:02 ... 
+Creating domain...                                          |    0 B  00:00     
+这样设置后虽然可以创建成功，虚拟机系统可以正常启动，但是连接不上网络
+
+@继续设置激活网络
+
+virsh net-list --all
+virsh net-autostart default
 
 
-# error, debian can't open Terminal
-# vi /etc/default/locale
+
+Domain is still running. Installation may be in progress.
+You can reconnect to the console to complete the installation process.
+
+
 
 # error:Dependency is not satisfiable: python3.10-minimal (= 3.10.4-3)
 1.	sudo apt-get update --fix-missing
