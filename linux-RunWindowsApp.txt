@@ -1,0 +1,8 @@
+
+# install wine
+apt update && aptitude install wine -y
+wine --version
+
+# run app
+# 输入以下命令来安装雷电模拟器,事先将安装文件下载到本地
+wine /data/software/ldplayer9_ld_401682_ld.exe
