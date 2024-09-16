@@ -3,6 +3,9 @@ ip addr
 dhclient enp3s0
 ping qq.com
 
+# show memory
+free -m -h
+
 # 仓库源
 nano /etc/apt/sources.list
 deb http://ftp.cn.debian.org/debian bookworm main
@@ -240,19 +243,24 @@ apt install amule
 
 *** ------ swap begin ------ ***
 
-# 通过dd生成一个文件
-dd if=/dev/zero of=filespace count=5 bs=8192M
+# 通过dd生成一个文件--6G
+dd if=/dev/zero of=/var/swap count=1024000 bs=6144
 # 文件转换为 swap 格式
-mkswap 
+mkswap /var/swap
 # 修改文件权限为600
-chmod 600 filespace
+chmod 600 /var/swap
 # 挂在交换空间
-swapon filespace
+swapon /var/swap
 # 添加开机自启
+echo '/var/swap swap defaults 0 0'>>/etc/fstab && mount -a
+
 nano /etc/fstab
 
 # 手工开启
-swapon /root/filespace
+swapon /var/swap
+
+# 关闭
+swapoff /var/swap
 *** ------ swap end ------ ***
 
 
