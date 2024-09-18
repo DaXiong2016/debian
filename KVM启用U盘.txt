@@ -1,0 +1,11 @@
+# Virtual Machine Manager连接u盘
+
+step.1 
+打开Virtual Machine Manager，选中镜像win10vm
+
+step.2
+点击Edit，选择Vitrual Machine Details
+
+step.3
+点击左下Add Hardware,选择USB Host Device，插上U盘后选着对应的名称
+比如：002:002 Kingston Technology DataTravele 100 G3/G4..
