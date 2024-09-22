@@ -1,0 +1,33 @@
+如果需要在 Debian 系统中安装非 Debian 提供的 Python 包，请创建一个虚拟环境并使用相应的命令：
+
+
+    使用 pip 或 pipx 安装包。要使用 pip 安装包，请使用以下命令：python3 -m venv <venv_name>，然后使用 path/to/venv/bin/python 和 path/to/venv/bin/pip 来启动 Python 以及安装包。
+
+
+# python虚拟环境使用
+apt install python3.11-venv
+
+# 创建
+python3 -m venv venv_python
+
+# 进入虚拟环境并查看已安装包
+source /data/venv_python/bin/activate && pip list
+
+# 查看版本
+python --version
+
+# 部署KeymouseGo需要的环境
+@设置pip国内源
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install -r /data/KeymouseGo/requirements-universal.txt
+pip3 install pyinstaller
+pyinstaller -F -w --add-data "./assets:assets" /data/KeymouseGo/KeymouseGo.py
+
+# 将安装包列表输出到txt文件
+pip freeze > reqs.txt
+
+# quit
+deactivate
+
+# delete
+rm -rf venv_python

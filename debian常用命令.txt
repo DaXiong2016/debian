@@ -1,3 +1,22 @@
+# install sublime-text
+apt update && apt install sublime-text -y
+
+
+# 设置目录不可删除
+chattr +i -RV movies
+
+@取消设置目录不可删除
+chattr -i -RV movies
+
+# grep search command
+grep -Rwi /home/debian/Documents -e "grep"
+@-R 递归子目录,w 查找对应的单词，i 不区分大小写
+
+# apt查看已安装应用
+apt list --installed
+apt list --installed | grep virt*
+
+
 # enable network
 ip addr
 dhclient enp3s0
@@ -364,6 +383,9 @@ aptitude install ntfs-3g
 
 使用首次挂载如下：
 mount -t ntfs-3g /dev/sdd1 /mnt/usb/
+
+#del
+umount /mnt/usb/
 
 #exfat则需要安装
 aptitude install fuse-exfat exfat-utils
