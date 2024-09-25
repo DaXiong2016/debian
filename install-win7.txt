@@ -1,0 +1,20 @@
+
+
+# 准备工作
+使用PE启动
+将Win7x64-2024.10.esd拷贝在U盘，设置挂载U盘
+
+Add Hardware -> USB Host Device -> 002:002 AIcor Micro Corp.Flash Drive
+
+# 4g内存 40g硬盘
+virt-install \
+--virt-type=kvm \
+--name win7 \
+--ram 4096 \
+--vcpus=1 \
+--disk path=/var/lib/libvirt/images/win7.qcow2,size=40 \
+--os-variant win7 \
+--osinfo detect=on,name=win7 \
+--cdrom /data/os/FirPE-V1.9.1.iso \
+--network network=default,model=virtio --graphics vnc,listen=0.0.0.0 \
+--noautoconsole

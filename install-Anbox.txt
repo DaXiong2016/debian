@@ -1,0 +1,4 @@
+# step1. 安装
+apt update && apt install anbox
+apt install android-tools-adb
+
