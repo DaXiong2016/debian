@@ -14,3 +14,11 @@ virt-install \
 --cdrom /data/os/ATV9X86X64Chrome06.02.23.iso \
 --network network=default,model=virtio --graphics vnc,listen=0.0.0.0 \
 --noautoconsole
+
+
+# ftp共享
+- android端
+安装并打开ES文件浏览器，选择“从PC访问”
+
+- PC端
+安装filezilla，填写ftp地址和端口，用户密码输入guest

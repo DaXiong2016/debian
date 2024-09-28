@@ -2,6 +2,8 @@
 apt update && apt install android-tools-adb
 adb connect 192.168.1.108
 
+adb connect 172.16.1.15
+
 adb devices
 
 # install apk
@@ -12,10 +14,32 @@ ls
 adb install /mnt/usb/APP-InstallPackage/games/沙滩球球.apk
 adb install /mnt/usb/APP-InstallPackage/games/redball4-2.apk
 adb install /mnt/usb/APP-InstallPackage/games/愤怒的小鸟.apk
+adb install /mnt/usb/APP-InstallPackage/games/消消乐官方版.apk
+adb install /mnt/usb/APP-InstallPackage/games/超级熊.apk
+
+adb install '/home/debian/Downloads/android-apk/植物大战僵尸经典版下载 v2.3.0.apk'
+adb install '/home/debian/Downloads/android-apk/梦幻家园无敌版∞钻石无限内购免广告下载 v6.2.0 安卓版.apk'
+
+
+adb install /mnt/usb/APP-InstallPackage/games/超级熊.apk||adb install /home/debian/Downloads/android-apk/连连看我最牛.apk
+
+adb install 球球跳跃大战.apk||adb install 球球冲冲乐.apk
+adb install  '割绳子2内购成功购 买版下载 v2.4.4.apk'
+
 
 adb install '/mnt/usb/APP-InstallPackage/tv/1-小薇直播纯净版APP电视版 v2.5.0.5投屏版.apk'
 adb install '/mnt/usb/APP-InstallPackage/tv/1.1-极悦直播全频道解锁版.apk'
 
+
+# 批量安装方法
+for file in ./*.apk
+do
+  adb install $file
+done
+
+
+# error: device offline
+解决办法：关闭开发者模式再开启
 
 
 # 查看已安装包
@@ -27,3 +51,4 @@ adb uninstall com.FDGEntertainment.redball4.gp
 # 删除空目录(在当前目录及其子目录删除空文件夹)
 cd /mnt/usb
 find . -type d -empty -exec rmdir {} \;
+umount /mnt/usb
